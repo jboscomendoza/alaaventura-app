@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1> {{ pod_titulo }} </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p> {{ pod_resumen }} </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h1> Episodios recientes </h1>
+        </div>
+    </div> 
+
+    <div class="row">
+        {% for episodio in recientes %}
+            <div class="col-4">
+                
+                <div class="row">
+                    <div class="col-12">
+                        <h3> {{ episodio.get("title") }} </h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <img src={{ episodio.get("image").get("href") }} width = "100%", height = "auto">
+                    </div>
+                    <div class="col-6">
+                        <div class="col-12">
+                            <p> {{ episodio.get("published") }} </p>
+                        </div>
+                        <div class="col-12">
+                            <p><a href={{ episodio.get("links")[1].get("href")}} >Escuchar</a></p>
+                        </div>
+                        <div class="col-12">
+                            <p>{{ episodio.get("itunes_duration") }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
